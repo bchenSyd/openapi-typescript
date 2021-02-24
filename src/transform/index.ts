@@ -1,8 +1,5 @@
-import { OperationObject } from "../types";
 import { comment } from "../utils";
 import { transformHeaderObjMap } from "./headers";
-import { transformOperationObj } from "./operation";
-import { transformPathsObj } from "./paths";
 import { transformResponsesObj } from "./responses";
 import { transformSchemaObjMap } from "./schema";
 
@@ -13,8 +10,6 @@ interface TransformOptions {
 
 export function transformAll(schema: any, { version, rawSchema }: TransformOptions): string {
   let output = "";
-
-  let operations: Record<string, OperationObject> = {};
 
   // --raw-schema mode
   if (rawSchema) {
@@ -32,18 +27,9 @@ export function transformAll(schema: any, { version, rawSchema }: TransformOptio
     }
   }
 
-  // #/paths (V2 & V3)
-  output += `export interface paths {\n`; // open paths
-  if (schema.paths) {
-    output += transformPathsObj(schema.paths, {
-      operations,
-      parameters: (schema.components && schema.components.parameters) || schema.parameters,
-    });
-  }
-  output += `}\n\n`; // close paths
-
   switch (version) {
     case 2: {
+      comment("arp auto generated types");
       // #/definitions
       output += `export interface definitions {\n  ${transformSchemaObjMap(schema.definitions || {}, {
         required: Object.keys(schema.definitions),
@@ -105,18 +91,6 @@ export function transformAll(schema: any, { version, rawSchema }: TransformOptio
       break;
     }
   }
-
-  output += `export interface operations {\n`; // open operations
-  if (Object.keys(operations).length) {
-    Object.entries(operations).forEach(([operationId, operation]) => {
-      if (operation.description) output += comment(operation.description); // handle comment
-      output += `  "${operationId}": {\n    ${transformOperationObj(
-        operation,
-        schema.components && schema.components.parameters
-      )}\n  }\n`;
-    });
-  }
-  output += `}\n`; // close operations
 
   return output.trim();
 }

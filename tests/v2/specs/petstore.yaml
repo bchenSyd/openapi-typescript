@@ -9,21 +9,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "petstore.swagger.io"
+host: "revenue.nsw.gov.au"
 basePath: "/v2"
-tags:
-  - name: "pet"
-    description: "Everything about your Pets"
-    externalDocs:
-      description: "Find out more"
-      url: "http://swagger.io"
-  - name: "store"
-    description: "Access to Petstore orders"
-  - name: "user"
-    description: "Operations about user"
-    externalDocs:
-      description: "Find out more about our store"
-      url: "http://swagger.io"
 schemes:
   - "https"
   - "http"
@@ -564,15 +551,7 @@ paths:
           description: "Invalid username supplied"
         404:
           description: "User not found"
-securityDefinitions:
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
-    flow: "implicit"
-    scopes:
-      write:pets: "modify pets in your account"
-      read:pets: "read your pets"
-  api_key:
+
     type: "apiKey"
     name: "api_key"
     in: "header"
@@ -695,6 +674,3 @@ definitions:
         type: "string"
       message:
         type: "string"
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"

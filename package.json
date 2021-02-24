@@ -1,35 +1,14 @@
 {
-  "name": "openapi-typescript",
+  "name": "@revenue/openapi-typescript",
   "description": "Generate TypeScript types from Swagger OpenAPI specs",
   "main": "dist/cjs",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">= 10.0.0"
   },
   "bin": {
-    "openapi-typescript": "bin/cli.js"
+    "@revenue/openapi-typescript": "bin/cli.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/drwpow/openapi-typescript"
-  },
-  "keywords": [
-    "swagger",
-    "typescript",
-    "ts",
-    "dts",
-    "openapi",
-    "codegen",
-    "generation",
-    "openapi 3",
-    "node"
-  ],
-  "author": "drew@pow.rs",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/drwpow/openapi-typescript/issues"
-  },
-  "homepage": "https://github.com/drwpow/openapi-typescript#readme",
   "@pika/pack": {
     "pipeline": [
       [
@@ -54,6 +33,7 @@
     "format": "yarn prettier -w .",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts src",
     "pregenerate": "npm run build",
+    "test-only": "jest --no-cache tests/v2",
     "test": "npm run build && jest --no-cache",
     "test:coverage": "npm run build && jest --no-cache --coverage && codecov",
     "typecheck": "tsc --noEmit",

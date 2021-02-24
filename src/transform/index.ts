@@ -10,27 +10,12 @@ interface TransformOptions {
 export function transformAll(schema: any, { version, rawSchema }: TransformOptions): string {
   let output = "";
 
-  // --raw-schema mode
-  if (rawSchema) {
-    switch (version) {
-      case 2: {
-        return `export interface definitions {\n  ${transformSchemaObjMap(schema, {
-          required: Object.keys(schema),
-        })}\n}`;
-      }
-      case 3: {
-        return `export interface schemas {\n    ${transformSchemaObjMap(schema, {
-          required: Object.keys(schema),
-        })}\n  }\n\n`;
-      }
-    }
-  }
-
   switch (version) {
     case 2: {
       // #/definitions
-      output += `interface definitions {\n  ${transformSchemaObjMap(schema.definitions || {}, {
+      output += `namespace Mars {\n  ${transformSchemaObjMap(schema.definitions || {}, {
         required: Object.keys(schema.definitions),
+        expose: true,
       })}\n}\n\n`;
 
       // #/parameters

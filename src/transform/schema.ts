@@ -11,19 +11,23 @@ import {
 
 interface TransformSchemaObjMapOptions {
   required?: string[];
+  expose?: boolean;
 }
 
 /** Take object keys and convert to TypeScript interface */
 export function transformSchemaObjMap(obj: Record<string, any>, options?: TransformSchemaObjMapOptions): string {
   let output = "";
   let required = (options && options.required) || [];
-
+  let exposeType = options && options.expose;
   Object.entries(obj).forEach(([key, value]) => {
     // 1. JSDoc comment (goes above property)
     if (value.description) output += comment(value.description);
 
     // 2. name (with “?” if optional property)
-    output += `"${key}"${required.includes(key) ? "" : "?"}: `;
+    let operator = exposeType ? " = " : ":";
+    let keyStr = exposeType?`type ${key}`:`"${key}"`;
+    
+    output += `${keyStr}${required.includes(key) ? "" : "?"}${operator} `;
 
     // 3. transform
     output += transformSchemaObj(value.schema || value);
@@ -57,6 +61,7 @@ export function transformSchemaObj(node: any): string {
   // transform core type
   switch (nodeType(node)) {
     case "ref": {
+      debugger;
       output += transformRef(node.$ref);
       break;
     }

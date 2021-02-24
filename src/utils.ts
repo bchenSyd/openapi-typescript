@@ -100,7 +100,8 @@ export function transformRef(ref: string, root = ""): string {
   if (isExternalRef) return "any";
 
   const parts = ref.replace(/^#\//, root).split("/");
-  return `${parts[0]}["${parts.slice(1).join('"]["')}"]`;
+  // return `${parts[0]}["${parts.slice(1).join('"]["')}"]`;
+  return parts[1];
 }
 
 /** Convert T into T[]; */

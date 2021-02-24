@@ -34,7 +34,7 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts src",
     "pregenerate": "npm run build",
     "test-only": "jest --no-cache tests/v2",
-    "test": "npm run build && jest --no-cache",
+    "test": "npm run build && jest --no-cache tests/v2",
     "test:coverage": "npm run build && jest --no-cache --coverage && codecov",
     "typecheck": "tsc --noEmit",
     "version": "npm run build"

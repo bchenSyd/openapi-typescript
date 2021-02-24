@@ -1,4 +1,3 @@
-import { comment } from "../utils";
 import { transformHeaderObjMap } from "./headers";
 import { transformResponsesObj } from "./responses";
 import { transformSchemaObjMap } from "./schema";
@@ -29,23 +28,22 @@ export function transformAll(schema: any, { version, rawSchema }: TransformOptio
 
   switch (version) {
     case 2: {
-      comment("arp auto generated types");
       // #/definitions
-      output += `export interface definitions {\n  ${transformSchemaObjMap(schema.definitions || {}, {
+      output += `interface definitions {\n  ${transformSchemaObjMap(schema.definitions || {}, {
         required: Object.keys(schema.definitions),
       })}\n}\n\n`;
 
       // #/parameters
       if (schema.parameters) {
         const required = Object.keys(schema.parameters);
-        output += `export interface parameters {\n    ${transformSchemaObjMap(schema.parameters, {
+        output += `interface parameters {\n    ${transformSchemaObjMap(schema.parameters, {
           required,
         })}\n  }\n\n`;
       }
 
       // #/parameters
       if (schema.responses) {
-        output += `export interface responses {\n    ${transformResponsesObj(schema.responses)}\n  }\n\n`;
+        output += `interface responses {\n    ${transformResponsesObj(schema.responses)}\n  }\n\n`;
       }
       break;
     }

@@ -1,13 +1,13 @@
 {
-  "name": "@revenue/openapi-typescript",
-  "description": "Generate TypeScript types from Swagger OpenAPI specs",
+  "name": "@revenue/swagger-codegen",
+  "description": "Generate TypeScript types from Swagger specs",
   "main": "dist/cjs",
   "version": "1.0.0",
   "engines": {
     "node": ">= 10.0.0"
   },
   "bin": {
-    "@revenue/openapi-typescript": "bin/cli.js"
+    "@revenue/swagger-codegen": "bin/cli.js"
   },
   "@pika/pack": {
     "pipeline": [

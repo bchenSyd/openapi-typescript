@@ -7,13 +7,13 @@ interface TransformOptions {
   version: number;
 }
 
-export function transformAll(schema: any, { version, rawSchema }: TransformOptions): string {
+export function transformAll(schema: any, { version }: TransformOptions): string {
   let output = "";
 
   switch (version) {
     case 2: {
       // #/definitions
-      output += `namespace Mars {\n  ${transformSchemaObjMap(schema.definitions || {}, {
+      output += `declare namespace Mars {\n  ${transformSchemaObjMap(schema.definitions || {}, {
         required: Object.keys(schema.definitions),
         expose: true,
       })}\n}\n\n`;

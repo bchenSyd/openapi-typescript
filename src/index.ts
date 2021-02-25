@@ -5,7 +5,8 @@ import { transformAll } from "./transform/index";
 import { OpenAPI2, OpenAPI3, SchemaObject, SwaggerToTSOptions } from "./types/index";
 export * from "./types/index";
 
-export const WARNING_MESSAGE = `/**
+export const WARNING_MESSAGE = `/* eslint-disable @typescript-eslint/no-unused-vars */\n
+/**
 * This type definition file was auto-generated for ARP frontend to consume.
 * Do not make direct changes to the file, as it will be overridden in the next run
 */`;

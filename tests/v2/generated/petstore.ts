@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /**
  * This type definition file was auto-generated for ARP frontend to consume.
  * Do not make direct changes to the file, as it will be overridden in the next run

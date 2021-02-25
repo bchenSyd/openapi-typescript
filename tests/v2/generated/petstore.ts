@@ -11,7 +11,7 @@ declare namespace Mars {
     quantity?: number;
     shipDate?: string;
     /** Order Status */
-    status?: "placed" | "approved" | "delivered";
+    status?: 'placed' | 'approved' | 'delivered';
     complete?: boolean;
   };
   type Category = {
@@ -40,7 +40,7 @@ declare namespace Mars {
     photoUrls: string[];
     tags?: Tag[];
     /** pet status in the store */
-    status?: "available" | "pending" | "sold";
+    status?: 'available' | 'pending' | 'sold';
   };
   type ApiResponse = {
     code?: number;

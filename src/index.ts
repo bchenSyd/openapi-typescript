@@ -24,7 +24,7 @@ export default function swaggerToTS(
 `;
 
   // 3. Prettify output
-  let prettierOptions: prettier.Options = { parser: "typescript" };
+  let prettierOptions: prettier.Options = { parser: "typescript", singleQuote: true };
   if (options && options.prettierConfig) {
     try {
       const userOptions = prettier.resolveConfig.sync(path.resolve(process.cwd(), options.prettierConfig));
